@@ -1,8 +1,8 @@
 {
   "site": {
     "title": "Bigspring Light Astro",
-    "base_url": "https://bigspring-light-astro.vercel.app",
-    "base_path": "/",
+    "base_url": "https://essentialz1.github.io",
+    "base_path": "/website",
     "trailing_slash": false,
     "favicon": "/website/images/favicon.png",
     "logo": "/website/images/logo.png",
