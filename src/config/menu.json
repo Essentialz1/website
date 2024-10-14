@@ -2,27 +2,27 @@
   "main": [
     {
       "name": "Home",
-      "url": "/"
+      "url": "/website/"
     },
     {
       "name": "Blog",
-      "url": "/blog"
+      "url": "/website/blog"
     },
     {
       "name": "Pricing",
-      "url": "/pricing"
+      "url": "/website/pricing"
     },
     {
       "name": "Contact",
-      "url": "/contact"
+      "url": "/website/contact"
     },
     {
       "name": "FAQ",
-      "url": "/faq"
+      "url": "/website/faq"
     },
     {
       "name": "Elements",
-      "url": "/elements"
+      "url": "/website/elements"
     }
   ],
   "footer": [
@@ -31,7 +31,7 @@
       "menu": [
         {
           "text": "Pricing",
-          "url": "/pricing"
+          "url": "/website/pricing"
         },
         {
           "text": "Quick Start",
