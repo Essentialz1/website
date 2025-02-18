@@ -59,5 +59,5 @@ call_to_action:
   button:
     enable: true
     label: "Contactez-nous"
-    link: "website/contact"
+    link: "/contact"
 ---
