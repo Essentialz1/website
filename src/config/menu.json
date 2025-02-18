@@ -33,11 +33,11 @@
       "menu": [
         {
           "text": "Politique de confidentialité",
-          "url": "/privacy"
+          "url": "/website/privacy"
         },
         {
           "text": "Conditions générales d'utilisation",
-          "url": "/cgu"
+          "url": "/website/cgu"
         }
       ]
     }
