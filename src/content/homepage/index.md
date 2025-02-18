@@ -40,10 +40,10 @@ services:
       - "/website/images/Screen2.png"
       - "/website/images/Screen3.png"
       - "/website/images/Screen4.png"
-    button:
-      enable: true
-      label: Check it out
-      link: /contact
+   # button:
+   #   enable: true
+   #   label: Check it out
+   #   link: /contact
 
 # workflow
 workflow: 
