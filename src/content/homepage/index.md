@@ -1,12 +1,12 @@
 ---
 banner:
-  title: Essentials knowledge in a funny way
-  content: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nihil enim maxime corporis cumque <br/> totam aliquid nam sint inventore optio modi neque laborum officiis necessitatibus
+  title: Montrez vos skills scolaires !
+  content: "Est-tu prêt à relever le défi ?" 
   image: /website/images/banner-art.png
-  button:
-    label: "Contact Us"
-    link: "/contact"
-    enable: true
+  #button:
+  #  label: "Télécharger le jeu"
+  #  link: "/pricing"
+  #   enable: true
 
 # feature
 feature: 
@@ -33,43 +33,13 @@ feature:
 
 # services
 services:
-  - title: "It is the most advanced digital marketing and it company."
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
+  - title: "Skoolz est le premier jeu de quiz dédié aux compétences scolaires."
+    content: "Il va vous permettre de défier d’autres joueurs sur vos compétences scolaires en français, en maths, en histoire, en physique-chimie ou encore en svt, au niveau collège d’abord et bientôt au niveau lycée. Ces Duels vont vous permettre de gagner des trophées et ainsi de vous battre pour être le meilleur joueur au classement des skoolers ! Mais Skoolz ce n’est pas qu’un jeu de quiz ou de duel de quiz. C’est un jeu dans lequel vous pouvez vous améliorer ! Grâce à la partie Solo, vous trouverez toutes les compétences scolaires « mappées » et découpées en petits îlots. Vous pourrez ainsi à la fois vous entraîner pour vous améliorer dans les duels, et à la fois gagner des crédits et toutes sortes de récompenses. Ces récompenses vous permettront de vous acheter des cosmétiques afin de personnaliser votre profil ou encore de réaliser davantage de duels, et de devenir toujours meilleur ! Avec Skoolz, vous allez regarder autrement votre école… et votre école va vous regarder autrement !"
     images:
-      - "/website/images/service-slide-1.png"
-      - "/website/images/service-slide-2.png"
-      - "/website/images/service-slide-3.png"
-    button:
-      enable: true
-      label: Check it out
-      link: /contact
-
-  - title: "It is a privately owned Information and cyber security company"
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
-    images: 
-      - "/website/images/service-slide-1.png"
-    button:
-      enable: true
-      label: Check it out
-      link: /contact
-  
-  - title: "It’s a team of experienced and skilled people with distributions"
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
-    images:
-      - "/website/images/service-slide-1.png"
-      - "/website/images/service-slide-2.png"
-      - "/website/images/service-slide-3.png"
-    button:
-      enable: true
-      label: Check it out
-      link: /contact
-
-  - title: "A company standing different from others"
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
-    images:
-      - "/website/images/service-slide-1.png"
-      - "/website/images/service-slide-2.png"
-      - "/website/images/service-slide-3.png"
+      - "/website/images/Screen1.png"
+      - "/website/images/Screen2.png"
+      - "/website/images/Screen3.png"
+      - "/website/images/Screen4.png"
     button:
       enable: true
       label: Check it out
@@ -83,11 +53,11 @@ workflow:
 
 # call_to_action
 call_to_action:
-  title: Ready to get started?
-  content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur.
+  title: Besoin de plus d'information ?
+  content: Toute notre équipe est prète à répondre à toutes vos questions.
   image: '/website/images/cta.png'
   button:
     enable: true
-    label: "Contact Us"
+    label: "Contactez-nous"
     link: "/contact"
 ---

@@ -2,27 +2,11 @@
   "main": [
     {
       "name": "Home",
-      "url": "/website/"
-    },
-    {
-      "name": "Blog",
-      "url": "/website/blog"
-    },
-    {
-      "name": "Pricing",
-      "url": "/website/pricing"
+      "url": "/website"
     },
     {
       "name": "Contact",
       "url": "/website/contact"
-    },
-    {
-      "name": "FAQ",
-      "url": "/website/faq"
-    },
-    {
-      "name": "Elements",
-      "url": "/website/elements"
     }
   ],
   "footer": [
@@ -30,12 +14,8 @@
       "name": "Company",
       "menu": [
         {
-          "text": "Pricing",
-          "url": "/website/pricing"
-        },
-        {
-          "text": "Quick Start",
-          "url": "#"
+          "text": "Essentialz",
+          "url": "/website"
         }
       ]
     },
@@ -43,16 +23,8 @@
       "name": "Product",
       "menu": [
         {
-          "text": "Features",
-          "url": "#"
-        },
-        {
-          "text": "Platform",
-          "url": "#"
-        },
-        {
-          "text": "Pricing",
-          "url": "/pricing"
+          "text": "Skoolz",
+          "url": "/website"
         }
       ]
     },
@@ -60,16 +32,12 @@
       "name": "Support",
       "menu": [
         {
-          "text": "FAQ",
-          "url": "/faq"
+          "text": "Politique de confidentialité",
+          "url": "/privacy"
         },
         {
-          "text": "Privacy Policy",
-          "url": "/privacy-policy"
-        },
-        {
-          "text": "Terms & Conditions",
-          "url": "/terms-conditions"
+          "text": "Conditions générales d'utilisation",
+          "url": "/cgu"
         }
       ]
     }

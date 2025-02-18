@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Bigspring Light Astro",
+    "title": "Essentialz - Skoolz",
     "base_url": "https://essentialz1.github.io",
     "base_path": "/website",
     "trailing_slash": false,
     "favicon": "/website/images/favicon.png",
     "logo": "/website/images/logo.png",
-    "logo_width": "200",
-    "logo_height": "38",
-    "logo_text": "Astroplate"
+    "logo_width": "300",
+    "logo_height": "75",
+    "logo_text": "Skoolz"
   },
 
   "settings": {
@@ -19,20 +19,20 @@
 
   "nav_button": {
     "enable": true,
-    "label": "Get Started",
+    "label": "Contactez-nous",
     "link": "/contact"
   },
 
   "params": {
     "contact_form_action": "",
     "tag_manager_id": "",
-    "footer_content": "Lorem ipsum dolor sit amet, consectetur elit. Consjat tristique eget amet, tempus eu at cttur.",
-    "copyright": "Designed and Developed By [Themefisher](https://themefisher.com/)"
+    "footer_content": "Skoolz by EssentialZ",
+    "copyright": "Designed and Developed By EssentialZ"
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "EssentialZ",
     "meta_image": "/website/images/og-image.png",
-    "meta_description": "astro boilerplate"
+    "meta_description": "EssentialZ"
   }
 }

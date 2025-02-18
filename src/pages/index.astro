@@ -47,6 +47,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
   </section>
 
   <!-- Features -->
+   <!--
   <section class="section bg-theme-light">
     <div class="container">
       <div class="text-center">
@@ -82,7 +83,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
       </div>
     </div>
   </section>
-
+-->
   <!-- Services -->
   {
     services!.map((service: any, index: number) => {
@@ -100,8 +101,8 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
                           <Image
                             class="mx-auto"
                             src={image}
-                            width={538}
-                            height={328}
+                            width={300}
+                            height={200}
                             alt=""
                           />
                         </div>
@@ -113,8 +114,8 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
                   <Image
                     class="mx-auto"
                     src={service!.images![0]}
-                    width={538}
-                    height={328}
+                    width={300}
+                    height={200}
                     alt=""
                   />
                 )}
@@ -173,6 +174,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
   <!-- ./End service -->
 
   <!-- Workflow -->
+   <!-- 
   <section class="section pb-0">
     <div class="mb-8 text-center">
       <h2
@@ -188,7 +190,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
       height={414}
     />
   </section>
-
+-->
   <!-- Call to Action -->
   <Cta cta={call_to_action} />
 </Base>

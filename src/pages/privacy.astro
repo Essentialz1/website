@@ -1,0 +1,18 @@
+---
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryBySlug } from "astro:content";
+import type { TPostType } from "@/types";
+const entry = (await getEntryBySlug("privacy_old", "index")) as TPostType;
+const { title, description } = entry.data;
+---
+
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <h1 class="text-center font-normal" set:html={markdownify(title)} />
+      <div class="section row -mt-6">
+      </div>
+    </div>
+  </section>
+</Base>
