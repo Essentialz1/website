@@ -1,3 +1,8 @@
 [
-	{ "file": "Skoolz_1.0.59.apk", "label": "Skoolz", "version": "1.0.59", "notes": "Ticket sur les milestones" }
+	{
+    "file": "https://github.com/Essentialz1/website/releases/download/Skoolz/Skoolz.apk",
+    "label": "Skoolz",
+    "version": "1.0.59",
+    "notes": "1 ticket requis pour faire un milestone"
+  }
 ]
