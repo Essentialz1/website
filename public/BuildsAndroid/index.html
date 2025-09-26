@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Téléchargements APK · APKs</title>
+  <title>Téléchargements APK</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="theme-color" content="#10b981" />
   <style>
@@ -13,11 +13,9 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-white text-slate-800">
   <header class="sticky top-0 z-10 border-b border-emerald-100 bg-white/80 backdrop-blur">
-    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-emerald-600"><path fill="currentColor" d="M17.6 9.48l1.3-2.25c.08-.14.04-.32-.1-.4s-.32-.04-.4.1l-1.33 2.3a7.05 7.05 0 00-9.14 0L6.6 6.93c-.08-.14-.26-.18-.4-.1s-.18.26-.1.4l1.3 2.26A6.97 6.97 0 004 16.5V19c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h10v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2.5c0-2.06-.8-4.01-2.4-5.52zM8 15a1 1 0 110-2 1 1 0 010 2zm8 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
-        <h1 class="text-xl md:text-2xl font-semibold">Téléchargements APK</h1>
-      </div>
+    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-emerald-600"><path fill="currentColor" d="M17.6 9.48l1.3-2.25c.08-.14.04-.32-.1-.4s-.32-.04-.4.1l-1.33 2.3a7.05 7.05 0 00-9.14 0L6.6 6.93c-.08-.14-.26-.18-.4-.1s-.18.26-.1.4l1.3 2.26A6.97 6.97 0 004 16.5V19c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h10v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2.5c0-2.06-.8-4.01-2.4-5.52zM8 15a1 1 0 110-2 1 1 0 010 2zm8 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+      <h1 class="text-xl md:text-2xl font-semibold">Téléchargements APK</h1>
     </div>
   </header>
 
@@ -42,7 +40,7 @@
     <section id="cards" class="mt-6 grid-auto-fit"></section>
 
     <footer class="mt-12 text-center text-sm text-slate-500">
-      <p>Chaque carte propose un lien direct vers le fichier .apk.</p>
+      <p>Les téléchargements sont fournis via manifest <code>APKs/builds.json</code>.</p>
     </footer>
   </main>
 
@@ -74,34 +72,52 @@
     </article>
   </template>
 
-  <script type="module">
-    const humanSize = (bytes) => {
+  <!-- IMPORTANT: pas de await en top-level -->
+  <script>
+    // ---------- Utilitaires ----------
+    function humanSize(bytes) {
       if (!Number.isFinite(bytes) || bytes < 0) return null;
       const units = ['o','Ko','Mo','Go','To'];
       let i = 0; let n = bytes;
       while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
-      return `${n.toFixed(n >= 100 ? 0 : n >= 10 ? 1 : 2)} ${units[i]}`;
-    };
+      return (n >= 100 ? n.toFixed(0) : n >= 10 ? n.toFixed(1) : n.toFixed(2)) + ' ' + units[i];
+    }
 
-    const parseFromFilename = (fname) => {
-      const base = fname.replace(/\.apk$/i, '');
+    function parseFromFilename(fname) {
+      const base = String(fname || '').replace(/\.apk$/i, '');
       const m = base.match(/(.+)_([0-9]+(?:\.[0-9A-Za-z-]+)*)$/);
       const label = m ? m[1].replace(/[_-]+/g, ' ') : base;
       const version = m ? m[2] : '';
       return { label, version };
-    };
-
-    async function fetchBuilds() {
-      try {
-        const res = await fetch('APKs/builds.json', { cache: 'no-store' });
-        if (res.ok) {
-          const arr = await res.json();
-          if (Array.isArray(arr)) return arr;
-        }
-      } catch (e) {}
-      return [];
     }
 
+    // ---------- Chargement du manifest ----------
+    function fetchBuilds() {
+      const tried = [];
+      const candidates = [ 'APKs/builds.json', './APKs/builds.json', './builds.json', '/APKs/builds.json' ];
+      return new Promise(async (resolve) => {
+        for (const url of candidates) {
+          try {
+            tried.push(url);
+            const res = await fetch(url, { cache: 'no-store' });
+            if (res.ok) {
+              const arr = await res.json();
+              if (Array.isArray(arr)) return resolve(arr);
+            }
+          } catch (e) {}
+        }
+        const c = document.getElementById('cards');
+        if (c) {
+          c.innerHTML = `<div class="rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+            <strong>Manifest introuvable :</strong> impossible de charger <code>APKs/builds.json</code>.<br>
+            Chemins testés : <code>${tried.join('</code>, <code>')}</code>
+          </div>`;
+        }
+        resolve([]);
+      });
+    }
+
+    // ---------- Métadonnées ----------
     async function enrichMeta(entry, baseUrl) {
       const fname = entry.file;
       const url = /^(https?:)?\/\//.test(fname) ? fname : `${baseUrl}${fname}`;
@@ -126,6 +142,7 @@
       return entry;
     }
 
+    // ---------- Rendu ----------
     function renderCards(list) {
       const container = document.getElementById('cards');
       container.innerHTML = '';
@@ -141,49 +158,26 @@
         node.querySelector('.app-label').textContent = b.label || 'APK';
         node.querySelector('.version-badge').textContent = b.version || '—';
         node.querySelector('.notes').textContent = b.notes || '';
-        // Affichage d'un nom lisible sans exposer l'URL complète
-        const prettyName = /^(https?:)?\/\//.test(b.file) ? (b.label ? `${b.label}.apk` : (b.file.split('?')[0].split('#')[0].split('/').pop() || 'fichier.apk')) : b.file;
+
+        // n'affiche pas l'URL complète : seulement un joli nom
+        const prettyName = /^(https?:)?\/\//.test(b.file)
+          ? (b.label ? `${b.label}.apk` : (b.file.split('?')[0].split('#')[0].split('/').pop() || 'fichier.apk'))
+          : b.file;
         node.querySelector('.filename').textContent = prettyName;
 
-        if (b.size) {
-          node.querySelector('.size').classList.remove('hidden');
-          node.querySelector('.size-bytes').textContent = humanSize(b.size);
-        }
-        if (b.date instanceof Date && !isNaN(b.date)) {
-          node.querySelector('.date').classList.remove('hidden');
-          node.querySelector('.date-text').textContent = b.date.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'2-digit' });
-        }
-
+        // bouton Télécharger en <a>
         const a = node.querySelector('.download-btn');
         a.href = b.url;
+        // extrait un nom de fichier potable pour l'attribut download (ignoré parfois en cross-origin)
         const bn = (s) => {
-          try { s = decodeURIComponent(s); } catch(e) {}
+          try { s = decodeURIComponent(String(s)); } catch(e) {}
           const m = s.split('?')[0].split('#')[0];
-          return m.substring(m.lastIndexOf('/')+1) || 'download.apk';
+          const last = m.substring(m.lastIndexOf('/')+1);
+          return last || 'download.apk';
         };
         a.setAttribute('download', bn(b.file || 'download.apk'));
 
-        node.querySelector('.copy-btn').addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(new URL(b.url, window.location.href).href);
-            alert('Lien copié dans le presse-papiers');
-          } catch (e) {
-            prompt('Copiez ce lien :', new URL(b.url, window.location.href).href);
-          }
-        });
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            const blob = await res.blob();
-            const dl = document.createElement('a');
-            dl.href = URL.createObjectURL(blob);
-            dl.download = b.file || 'download.apk';
-            document.body.appendChild(dl);
-            dl.click();
-            setTimeout(() => { URL.revokeObjectURL(dl.href); dl.remove(); }, 1000);
-          } catch (e) {
-            alert("Téléchargement impossible.");
-          }
-        });
-
+        // bouton Copier le lien
         node.querySelector('.copy-btn').addEventListener('click', async () => {
           try {
             await navigator.clipboard.writeText(new URL(b.url, window.location.href).href);
@@ -208,23 +202,25 @@
 
       arr.sort((a, b) => {
         if (sort === 'name') return (a.label || '').localeCompare(b.label || '');
-        const ta = a.date instanceof Date && !isNaN(a.date) ? a.date.getTime() : -Infinity;
-        const tb = b.date instanceof Date && !isNaN(b.date) ? b.date.getTime() : -Infinity;
-        return sort === 'oldest' ? ta - tb : tb - ta;
+        const ta = (b.date instanceof Date && !isNaN(b.date)) ? b.date.getTime() : -Infinity;
+        const tb = (a.date instanceof Date && !isNaN(a.date)) ? a.date.getTime() : -Infinity;
+        // on veut newest par défaut => tb - ta car on a inversé pour garder compat
+        return sort === 'oldest' ? - (tb - ta) : (tb - ta);
       });
 
       return arr;
     }
 
-    (async function init() {
+    // ---------- Démarrage (aucun await en top-level) ----------
+    (function init() {
       const baseUrl = 'APKs/';
-      let builds = await fetchBuilds();
-      builds = await Promise.all(builds.map(e => enrichMeta({ ...e }, baseUrl)));
-
-      const update = () => renderCards(applyFiltersSort(builds));
-      document.getElementById('q').addEventListener('input', update);
-      document.getElementById('sort').addEventListener('change', update);
-      update();
+      fetchBuilds().then(async (builds) => {
+        const enriched = await Promise.all(builds.map(e => enrichMeta({ ...e }, baseUrl)));
+        const update = () => renderCards(applyFiltersSort(enriched));
+        document.getElementById('q').addEventListener('input', update);
+        document.getElementById('sort').addEventListener('change', update);
+        update();
+      });
     })();
   </script>
 </body>
