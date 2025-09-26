@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Téléchargements APK · BuildsAndroid</title>
+  <title>Téléchargements APK · APKs</title>
   <!--
     📦 Déploiement
-    1) Placez cette page (index.html) à la racine de votre site OU dans le même dossier parent que /BuildsAndroid.
-    2) Mettez vos fichiers .apk dans le dossier /BuildsAndroid/APKs (ex: BuildsAndroid/APKs/Skoolz_1.0.59.apk).
-    3) (Option recommandé) Créez un fichier JSON à BuildsAndroid/builds.json, par ex.:
+    1) Placez cette page (index.html) à la racine de votre site OU dans le même dossier parent que /APKs.
+    2) Mettez vos fichiers .apk dans le dossier /APKs (ex: APKs/Skoolz_1.0.59.apk).
+    3) (Option recommandé) Créez un fichier JSON à APKs/builds.json, par ex.:
        [
          { "file": "Skoolz_1.0.59.apk", "label": "Skoolz", "version": "1.0.59", "notes": "Correctifs mineurs" },
          { "file": "MonAppliPro_2.3.1.apk" }
@@ -33,6 +33,14 @@
       <a href="APKs/" class="text-sm text-emerald-700 hover:underline">Ouvrir le dossier</a>
     </div>
   </header>
+
+  <!-- Alerte LFS / GitHub Pages -->
+  <div id="lfs-alert" class="mx-auto max-w-6xl px-4 mt-4 hidden">
+    <div class="rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
+      <strong>Attention :</strong> les fichiers .apk suivis avec <em>Git LFS</em> ne sont pas servis par GitHub Pages. Vous téléchargerez alors un petit fichier texte (pointer LFS).
+      <br/>Solution conseillée : utilisez des <a class="underline" href="https://docs.github.com/releases" target="_blank" rel="noreferrer noopener">GitHub Releases</a> ou mettez des <code>url</code> absolues vers un hébergeur (S3, R2, etc.) dans <code>APKs/builds.json</code>.
+    </div>
+  </div>
 
   <main class="mx-auto max-w-6xl px-4 pb-24 pt-8">
     <!-- Barre d’outils -->
@@ -122,9 +130,9 @@
 
     // --- Chargement des builds ---
     async function fetchBuilds() {
-      // 1) On tente de charger BuildsAndroid/builds.json
+      // 1) On tente de charger APKs/builds.json
       try {
-        const res = await fetch('BuildsAndroid/builds.json', { cache: 'no-store' });
+        const res = await fetch('APKs/builds.json', { cache: 'no-store' });
         if (res.ok) {
           const arr = await res.json();
           if (Array.isArray(arr)) return arr;
@@ -143,7 +151,7 @@
     async function enrichMeta(entry, baseUrl) {
       // Ajoute label/version si absents, essaie d’obtenir la taille via HEAD
       const fname = entry.file;
-      const url = `${baseUrl}${fname}`;
+      const url = /^(https?:)?\/\//.test(fname) ? fname : `${baseUrl}${fname}`;
 
       // Déductions depuis le nom
       if (!entry.label || !entry.version) {
@@ -234,8 +242,12 @@
     (async function init() {
       const baseUrl = 'APKs/';
       let builds = await fetchBuilds();
-      // Enrichit chaque entrée
       builds = await Promise.all(builds.map(e => enrichMeta({ ...e }, baseUrl)));
+
+      // Affiche une alerte si on pointe vers GitHub Pages (risque LFS pointer)
+      if (location.hostname.endsWith('github.io')) {
+        document.getElementById('lfs-alert').classList.remove('hidden');
+      }
 
       const update = () => renderCards(applyFiltersSort(builds));
       document.getElementById('q').addEventListener('input', update);
