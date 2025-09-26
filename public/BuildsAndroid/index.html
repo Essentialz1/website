@@ -30,7 +30,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-emerald-600"><path fill="currentColor" d="M17.6 9.48l1.3-2.25c.08-.14.04-.32-.1-.4s-.32-.04-.4.1l-1.33 2.3a7.05 7.05 0 00-9.14 0L6.6 6.93c-.08-.14-.26-.18-.4-.1s-.18.26-.1.4l1.3 2.26A6.97 6.97 0 004 16.5V19c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h10v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2.5c0-2.06-.8-4.01-2.4-5.52zM8 15a1 1 0 110-2 1 1 0 010 2zm8 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
         <h1 class="text-xl md:text-2xl font-semibold">Téléchargements APK</h1>
       </div>
-      <a href="APKs/" class="text-sm text-emerald-700 hover:underline">Ouvrir le dossier</a>
+      
     </div>
   </header>
 
@@ -81,11 +81,10 @@
             <span class="inline-flex items-center gap-1 hidden size">• <span class="size-bytes"></span></span>
             <span class="inline-flex items-center gap-1 hidden date">• <span class="date-text"></span></span>
           </div>
-          <div class="mt-4 flex gap-2">
-            <a class="download-btn inline-flex items-center justify-center rounded-xl border border-emerald-600 px-4 py-2 text-emerald-700 hover:bg-emerald-50 font-medium" download>
+          <div class="mt-4">
+            <button class="download-btn inline-flex items-center justify-center rounded-xl border border-emerald-600 px-4 py-2 text-emerald-700 hover:bg-emerald-50 font-medium">
               ⬇️ Télécharger
-            </a>
-            <button class="copy-btn inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-50">🔗 Copier le lien</button>
+            </button>
           </div>
         </div>
       </div>
@@ -196,15 +195,21 @@
           node.querySelector('.date-text').textContent = b.date.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'2-digit' });
         }
 
-        const a = node.querySelector('.download-btn');
-        a.href = b.url;
-        a.setAttribute('download', b.file);
-        node.querySelector('.copy-btn').addEventListener('click', async () => {
+        const btn = node.querySelector('.download-btn');
+        btn.addEventListener('click', async () => {
           try {
-            await navigator.clipboard.writeText(new URL(b.url, window.location.href).href);
-            alert('Lien copié dans le presse-papiers');
+            const res = await fetch(b.url, { redirect: 'follow', referrerPolicy: 'no-referrer' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const blob = await res.blob();
+            const dl = document.createElement('a');
+            dl.href = URL.createObjectURL(blob);
+            dl.download = b.file || 'download.apk';
+            document.body.appendChild(dl);
+            dl.click();
+            setTimeout(() => { URL.revokeObjectURL(dl.href); dl.remove(); }, 1000);
           } catch (e) {
-            prompt('Copiez ce lien :', new URL(b.url, window.location.href).href);
+            alert("Téléchargement impossible. Le lien source n'est pas accessible depuis ce site.");
+            console.error(e);
           }
         });
 
@@ -235,12 +240,7 @@
       const baseUrl = 'APKs/';
       let builds = await fetchBuilds();
       builds = await Promise.all(builds.map(e => enrichMeta({ ...e }, baseUrl)));
-
-      // Affiche une alerte si on pointe vers GitHub Pages (risque LFS pointer)
-      if (location.hostname.endsWith('github.io')) {
-        document.getElementById('lfs-alert').classList.remove('hidden');
-      }
-
+	  
       const update = () => renderCards(applyFiltersSort(builds));
       document.getElementById('q').addEventListener('input', update);
       document.getElementById('sort').addEventListener('change', update);
