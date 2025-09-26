@@ -66,7 +66,7 @@
             <span class="inline-flex items-center gap-1 hidden date">• <span class="date-text"></span></span>
           </div>
           <div class="mt-4 flex gap-2">
-            <button class="download-btn inline-flex items-center justify-center rounded-xl border border-emerald-600 px-4 py-2 text-emerald-700 hover:bg-emerald-50 font-medium">⬇️ Télécharger</button>
+            <a class="download-btn inline-flex items-center justify-center rounded-xl border border-emerald-600 px-4 py-2 text-emerald-700 hover:bg-emerald-50 font-medium" download>⬇️ Télécharger</a>
             <button class="copy-btn inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-50">🔗 Copier le lien</button>
           </div>
         </div>
@@ -141,7 +141,9 @@
         node.querySelector('.app-label').textContent = b.label || 'APK';
         node.querySelector('.version-badge').textContent = b.version || '—';
         node.querySelector('.notes').textContent = b.notes || '';
-        node.querySelector('.filename').textContent = b.file;
+        // Affichage d'un nom lisible sans exposer l'URL complète
+        const prettyName = /^(https?:)?\/\//.test(b.file) ? (b.label ? `${b.label}.apk` : (b.file.split('?')[0].split('#')[0].split('/').pop() || 'fichier.apk')) : b.file;
+        node.querySelector('.filename').textContent = prettyName;
 
         if (b.size) {
           node.querySelector('.size').classList.remove('hidden');
@@ -152,10 +154,23 @@
           node.querySelector('.date-text').textContent = b.date.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'2-digit' });
         }
 
-        const btn = node.querySelector('.download-btn');
-        btn.addEventListener('click', async () => {
+        const a = node.querySelector('.download-btn');
+        a.href = b.url;
+        const bn = (s) => {
+          try { s = decodeURIComponent(s); } catch(e) {}
+          const m = s.split('?')[0].split('#')[0];
+          return m.substring(m.lastIndexOf('/')+1) || 'download.apk';
+        };
+        a.setAttribute('download', bn(b.file || 'download.apk'));
+
+        node.querySelector('.copy-btn').addEventListener('click', async () => {
           try {
-            const res = await fetch(b.url, { redirect: 'follow', referrerPolicy: 'no-referrer' });
+            await navigator.clipboard.writeText(new URL(b.url, window.location.href).href);
+            alert('Lien copié dans le presse-papiers');
+          } catch (e) {
+            prompt('Copiez ce lien :', new URL(b.url, window.location.href).href);
+          }
+        });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const blob = await res.blob();
             const dl = document.createElement('a');
