@@ -4,18 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Téléchargements APK · APKs</title>
-  <!--
-    📦 Déploiement
-    1) Placez cette page (index.html) à la racine de votre site OU dans le même dossier parent que /APKs.
-    2) Mettez vos fichiers .apk dans le dossier /APKs (ex: APKs/Skoolz_1.0.59.apk).
-    3) (Option recommandé) Créez un fichier JSON à APKs/builds.json, par ex.:
-       [
-         { "file": "Skoolz_1.0.59.apk", "label": "Skoolz", "version": "1.0.59", "notes": "Correctifs mineurs" },
-         { "file": "MonAppliPro_2.3.1.apk" }
-       ]
-       Si ce fichier n’existe pas, la page peut fonctionner en mode “auto” avec une petite liste par défaut (à éditer dans le code),
-       mais elle ne peut pas lister automatiquement le contenu du dossier sans aide côté serveur.
-  -->
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="theme-color" content="#10b981" />
   <style>
@@ -30,12 +18,10 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-emerald-600"><path fill="currentColor" d="M17.6 9.48l1.3-2.25c.08-.14.04-.32-.1-.4s-.32-.04-.4.1l-1.33 2.3a7.05 7.05 0 00-9.14 0L6.6 6.93c-.08-.14-.26-.18-.4-.1s-.18.26-.1.4l1.3 2.26A6.97 6.97 0 004 16.5V19c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h10v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2.5c0-2.06-.8-4.01-2.4-5.52zM8 15a1 1 0 110-2 1 1 0 010 2zm8 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
         <h1 class="text-xl md:text-2xl font-semibold">Téléchargements APK</h1>
       </div>
-      
     </div>
   </header>
 
   <main class="mx-auto max-w-6xl px-4 pb-24 pt-8">
-    <!-- Barre d’outils -->
     <section class="glass rounded-2xl border border-emerald-100 p-4 md:p-6 shadow-sm">
       <div class="flex flex-col md:flex-row md:items-end gap-3 md:gap-4">
         <div class="flex-1">
@@ -53,12 +39,10 @@
       </div>
     </section>
 
-    <!-- Liste des builds -->
     <section id="cards" class="mt-6 grid-auto-fit"></section>
 
-    <!-- Pied de page -->
     <footer class="mt-12 text-center text-sm text-slate-500">
-      <p>Dossier source : <code>/APKs</code>. Chaque carte propose un lien direct vers le fichier .apk.</p>
+      <p>Chaque carte propose un lien direct vers le fichier .apk.</p>
     </footer>
   </main>
 
@@ -81,10 +65,9 @@
             <span class="inline-flex items-center gap-1 hidden size">• <span class="size-bytes"></span></span>
             <span class="inline-flex items-center gap-1 hidden date">• <span class="date-text"></span></span>
           </div>
-          <div class="mt-4">
-            <button class="download-btn inline-flex items-center justify-center rounded-xl border border-emerald-600 px-4 py-2 text-emerald-700 hover:bg-emerald-50 font-medium">
-              ⬇️ Télécharger
-            </button>
+          <div class="mt-4 flex gap-2">
+            <button class="download-btn inline-flex items-center justify-center rounded-xl border border-emerald-600 px-4 py-2 text-emerald-700 hover:bg-emerald-50 font-medium">⬇️ Télécharger</button>
+            <button class="copy-btn inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-50">🔗 Copier le lien</button>
           </div>
         </div>
       </div>
@@ -92,7 +75,6 @@
   </template>
 
   <script>
-    // --- Utilitaires ---
     const humanSize = (bytes) => {
       if (!Number.isFinite(bytes) || bytes < 0) return null;
       const units = ['o','Ko','Mo','Go','To'];
@@ -102,7 +84,6 @@
     };
 
     const parseFromFilename = (fname) => {
-      // Essaye de déduire label et version depuis "Nom_1.2.3.apk".
       const base = fname.replace(/\.apk$/i, '');
       const m = base.match(/(.+)_([0-9]+(?:\.[0-9A-Za-z-]+)*)$/);
       const label = m ? m[1].replace(/[_-]+/g, ' ') : base;
@@ -110,48 +91,27 @@
       return { label, version };
     };
 
-    const guessDateFromVersion = (version) => {
-      // Optionnel: si la version ressemble à une date (2025.09.26), on la convertit.
-      const d = version.match(/(20\d{2})[._-]?(\d{2})[._-]?(\d{2})/);
-      if (!d) return null;
-      const iso = `${d[1]}-${d[2]}-${d[3]}`;
-      const date = new Date(iso);
-      return Number.isNaN(date.getTime()) ? null : date;
-    };
-
-    // --- Chargement des builds ---
     async function fetchBuilds() {
-      // 1) On tente de charger APKs/builds.json
       try {
         const res = await fetch('APKs/builds.json', { cache: 'no-store' });
         if (res.ok) {
           const arr = await res.json();
           if (Array.isArray(arr)) return arr;
         }
-      } catch (e) {
-        // pas de manifest → on bascule en liste locale
-      }
-
-      // 2) Fallback: à EDITER selon vos besoins
-      return [
-        { file: 'Skoolz_1.0.59.apk' },
-        // { file: 'MonAppli_2025.09.01.apk', notes: 'Build interne' },
-      ];
+      } catch (e) {}
+      return [];
     }
 
     async function enrichMeta(entry, baseUrl) {
-      // Ajoute label/version si absents, essaie d’obtenir la taille via HEAD
       const fname = entry.file;
       const url = /^(https?:)?\/\//.test(fname) ? fname : `${baseUrl}${fname}`;
 
-      // Déductions depuis le nom
       if (!entry.label || !entry.version) {
         const p = parseFromFilename(fname);
         entry.label = entry.label || p.label;
         entry.version = entry.version || p.version;
       }
 
-      // HEAD pour la taille et la date si CORS/serveur le permet
       try {
         const head = await fetch(url, { method: 'HEAD' });
         if (head.ok) {
@@ -160,10 +120,7 @@
           const lm = head.headers.get('last-modified');
           if (lm) entry.date = new Date(lm);
         }
-      } catch (e) {
-        // Serveur ne permet pas HEAD → on tente de déduire la date via la version
-        if (!entry.date && entry.version) entry.date = guessDateFromVersion(entry.version);
-      }
+      } catch (e) {}
 
       entry.url = url;
       return entry;
@@ -208,8 +165,16 @@
             dl.click();
             setTimeout(() => { URL.revokeObjectURL(dl.href); dl.remove(); }, 1000);
           } catch (e) {
-            alert("Téléchargement impossible. Le lien source n'est pas accessible depuis ce site.");
-            console.error(e);
+            alert("Téléchargement impossible.");
+          }
+        });
+
+        node.querySelector('.copy-btn').addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(new URL(b.url, window.location.href).href);
+            alert('Lien copié dans le presse-papiers');
+          } catch (e) {
+            prompt('Copiez ce lien :', new URL(b.url, window.location.href).href);
           }
         });
 
@@ -230,7 +195,7 @@
         if (sort === 'name') return (a.label || '').localeCompare(b.label || '');
         const ta = a.date instanceof Date && !isNaN(a.date) ? a.date.getTime() : -Infinity;
         const tb = b.date instanceof Date && !isNaN(b.date) ? b.date.getTime() : -Infinity;
-        return sort === 'oldest' ? ta - tb : tb - ta; // newest by default
+        return sort === 'oldest' ? ta - tb : tb - ta;
       });
 
       return arr;
@@ -240,7 +205,7 @@
       const baseUrl = 'APKs/';
       let builds = await fetchBuilds();
       builds = await Promise.all(builds.map(e => enrichMeta({ ...e }, baseUrl)));
-	  
+
       const update = () => renderCards(applyFiltersSort(builds));
       document.getElementById('q').addEventListener('input', update);
       document.getElementById('sort').addEventListener('change', update);
