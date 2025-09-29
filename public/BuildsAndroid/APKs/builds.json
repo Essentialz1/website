@@ -1,5 +1,11 @@
 [
 	{
+		"file": "https://github.com/Essentialz1/website/releases/download/Skoolz_1061/Skoolz.apk",
+		"label": "Skoolz",
+		"version": "1.0.61",
+		"notes": "Correctifs dans les parametres et les notifications"
+	},
+	{
 		"file": "https://github.com/Essentialz1/website/releases/download/Skoolz_1060/Skoolz.apk",
 		"label": "Skoolz",
 		"version": "1.0.60",
