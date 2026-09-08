@@ -16,7 +16,7 @@ banner:
     enable: true
     label: "Télécharger l'APK Android"
     note: "v1.1.6 · 76 Mo — version la plus à jour, en attente de validation Google Play"
-    link: "/website/BuildsAndroid/index.html"
+    link: "/website/BuildsAndroid/APKs/Skoolz_1.1.6.apk"
 
 # feature
 feature: 

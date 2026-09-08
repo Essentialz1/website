@@ -52,7 +52,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
           {
             banner?.apk?.enable && (
               <p class="mt-4">
-                <a class="cta-link text-primary" href={banner.apk.link}>
+                <a class="cta-link text-primary" href={banner.apk.link} download>
                   {banner.apk.label}
                 </a>
                 <span class="mt-1 block text-sm text-slate-500">
