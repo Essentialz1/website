@@ -10,7 +10,8 @@
   @import "components";
   @import "navigation";
   @import "buttons";
-  @import '../../node_modules/swiper/swiper.scss';
+  // Swiper dropped its .scss sources in v14; extensionless so Sass inlines swiper.css
+  @import "../../node_modules/swiper/swiper";
 }
 
 @layer utilities {
