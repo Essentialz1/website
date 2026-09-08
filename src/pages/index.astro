@@ -31,6 +31,38 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
           }
 
           {
+            banner?.stores && (
+              <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+                {banner.stores.map((store: any) => (
+                  <a href={store.link} target="_blank" rel="noopener">
+                    <img
+                      class="h-[48px] w-auto"
+                      src={store.badge}
+                      width={store.name === "App Store" ? 152 : 162}
+                      height={48}
+                      alt={store.alt}
+                      loading="eager"
+                    />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+
+          {
+            banner?.apk?.enable && (
+              <p class="mt-4">
+                <a class="cta-link text-primary" href={banner.apk.link}>
+                  {banner.apk.label}
+                </a>
+                <span class="mt-1 block text-sm text-slate-500">
+                  {banner.apk.note}
+                </span>
+              </p>
+            )
+          }
+
+          {
             banner?.image && (
               <Image
                 class="mx-auto mt-12"
@@ -96,14 +128,14 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
                 {service!.images!.length > 1 ? (
                   <div class="swiper">
                     <div class="swiper-wrapper">
-                      {service!.images?.map((image: string) => (
+                      {service!.images?.map((image: any) => (
                         <div class="swiper-slide">
                           <Image
                             class="mx-auto"
-                            src={image}
+                            src={image.src}
                             width={300}
-                            height={200}
-                            alt=""
+                            height={650}
+                            alt={image.alt}
                           />
                         </div>
                       ))}
@@ -113,10 +145,10 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
                 ) : (
                   <Image
                     class="mx-auto"
-                    src={service!.images![0]}
+                    src={service!.images![0].src}
                     width={300}
-                    height={200}
-                    alt=""
+                    height={650}
+                    alt={service!.images![0].alt}
                   />
                 )}
               </div>

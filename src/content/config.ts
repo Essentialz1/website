@@ -11,7 +11,19 @@ const homepage = defineCollection({
         label: z.string(),
         link: z.string().default("#"),
         enable: z.boolean().default(true)
-      })
+      }).optional(),
+      stores: z.array(z.object({
+        name: z.string(),
+        link: z.string(),
+        badge: z.string(),
+        alt: z.string().optional()
+      })).optional(),
+      apk: z.object({
+        enable: z.boolean().default(true),
+        label: z.string(),
+        note: z.string().optional(),
+        link: z.string().default("#")
+      }).optional()
     }).optional(),
     feature: z.object({
       title: z.string().optional(),
@@ -20,7 +32,10 @@ const homepage = defineCollection({
     services: z.array(z.object({
       title: z.string().optional(),
       content: z.string().optional(),
-      images: z.array(z.string()).optional(),
+      images: z.array(z.object({
+        src: z.string(),
+        alt: z.string().optional()
+      })).optional(),
       button: z.object({
         label: z.string(),
         link: z.string().default("#"),
