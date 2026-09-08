@@ -2,7 +2,7 @@
 banner:
   title: Montrez vos skills scolaires !
   content: "Est-tu prêt à relever le défi ?" 
-  image: /website/images/banner-art.png
+  image: /website/images/banner-home.png
   stores:
     - name: "App Store"
       link: "https://apps.apple.com/fr/app/skoolz/id6744245849"
