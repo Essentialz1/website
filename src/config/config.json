@@ -5,8 +5,8 @@
     "base_path": "/website",
     "trailing_slash": false,
     "favicon": "/website/images/favicon.png",
-    "logo": "/website/images/logo.png",
-    "logo_width": "300",
+    "logo": "/website/images/logo-badge.png",
+    "logo_width": "173",
     "logo_height": "75",
     "logo_text": "Skoolz"
   },
