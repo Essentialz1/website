@@ -10,11 +10,11 @@ const { cta } = Astro.props;
     <div class="row mx-auto items-center justify-center">
       <div class="md:col-5 lg:col-4">
         <Image
-          class="w-full"
+          class="w-full rounded-lg"
           src={cta?.image}
-          alt="call to action image"
-          width={325}
-          height={206}
+          alt={cta?.alt ?? "Skoolz"}
+          width={437}
+          height={352}
         />
       </div>
       <div class="mt-5 text-center md:mt-0 md:text-left md:col-6 lg:col-5">

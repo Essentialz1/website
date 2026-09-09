@@ -77,8 +77,9 @@ workflow:
 # call_to_action
 call_to_action:
   title: Besoin de plus d'information ?
-  content: Toute notre équipe est prète à répondre à toutes vos questions.
-  image: '/website/images/cta.png'
+  content: Toute notre équipe est prête à répondre à toutes vos questions.
+  image: '/website/images/cta-skoolz.png'
+  alt: "Une élève de Skoolz pose une question dans sa salle de classe"
   button:
     enable: true
     label: "Contactez-nous"
