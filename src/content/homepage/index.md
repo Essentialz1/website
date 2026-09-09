@@ -12,11 +12,6 @@ banner:
       link: "https://play.google.com/store/apps/details?id=com.EssentialZ.Skoolz&hl=fr"
       badge: "/website/images/badges/google-play-fr.png"
       alt: "Disponible sur Google Play"
-  apk:
-    enable: true
-    label: "Télécharger l'APK Android"
-    note: "v1.1.6 · 76 Mo — version la plus à jour, en attente de validation Google Play"
-    link: "/website/BuildsAndroid/APKs/Skoolz_1.1.6.apk"
 
 # feature
 feature: 
