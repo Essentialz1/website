@@ -65,14 +65,15 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
           {
             banner?.video && (
               <video
-                class="mx-auto mt-12 w-[300px] max-w-full rounded-[28px] shadow-lg"
+                class="mx-auto mt-12 w-[340px] max-w-full rounded-[28px] shadow-lg"
                 src={banner.video}
                 poster={banner.poster}
                 autoplay
                 muted
                 loop
                 playsinline
-                aria-label="Skoolz en jeu : la tour, un duel contre un Gardien et la remise d'un Sceau"
+                controls
+                aria-label="Skoolz en jeu : les 4 façons de jouer, un duel contre un Gardien et la remise d'un Sceau"
               />
             )
           }
