@@ -1,7 +1,9 @@
 ---
 banner:
-  title: Montrez vos skills scolaires !
-  content: "Est-tu prêt à relever le défi ?" 
+  title: "La seule appli à laquelle vous DEMANDEREZ à vos enfants de jouer"
+  content: "Skoolz transforme le programme de 6e en défis : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et gagne leurs Sceaux. Et vous, relèverez-vous le défi ?"
+  video: /website/videos/skoolz-teaser.mp4
+  poster: /website/videos/skoolz-teaser-poster.jpg
   image: /website/images/banner-home.png
   stores:
     - name: "App Store"
@@ -14,59 +16,45 @@ banner:
       alt: "Disponible sur Google Play"
 
 # feature
-feature: 
-  title: Something You Need To Know
+feature:
+  title: "Le programme de 6e, version jeu"
   features:
-  - name: "Clean Code"
-    icon: "/website/images/code.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Object Oriented"
-    icon: "/website/images/oop.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "24h Service"
-    icon: "/website/images/user-clock.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Value for Money"
-    icon: "/website/images/love.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Faster Response"
-    icon: "/website/images/speedometer.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Cloud Support"
-    icon: "/website/images/cloud.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
+  - name: "Le vrai programme"
+    content: "Fractions, Rome et l'Empire, la lumière, la grammaire… Chaque étage de la tour est un chapitre de 6e."
+  - name: "4 façons de jouer"
+    content: "QCM, vrai ou faux, ranger dans l'ordre, relier : les questions changent de forme pour ne jamais lasser."
+  - name: "Des duels contre les Gardiens"
+    content: "En haut de chaque palier, un Gardien attend : chaque bonne réponse est une sphère lancée contre lui."
+  - name: "Des Sceaux à collectionner"
+    content: "Chaque Gardien battu donne son Sceau. De quoi revenir chaque jour compléter son album."
 
 # services
 services:
-  - title: "Skoolz est le premier jeu de quiz dédié aux compétences scolaires."
-    content: "Il va vous permettre de défier d’autres joueurs sur vos compétences scolaires en français, en maths, en histoire, en physique-chimie ou encore en svt, au niveau collège d’abord et bientôt au niveau lycée. Ces Duels vont vous permettre de gagner des trophées et ainsi de vous battre pour être le meilleur joueur au classement des skoolers ! Mais Skoolz ce n’est pas qu’un jeu de quiz ou de duel de quiz. C’est un jeu dans lequel vous pouvez vous améliorer ! Grâce à la partie Solo, vous trouverez toutes les compétences scolaires « mappées » et découpées en petits îlots. Vous pourrez ainsi à la fois vous entraîner pour vous améliorer dans les duels, et à la fois gagner des crédits et toutes sortes de récompenses. Ces récompenses vous permettront de vous acheter des cosmétiques afin de personnaliser votre profil ou encore de réaliser davantage de duels, et de devenir toujours meilleur ! Avec Skoolz, vous allez regarder autrement votre école… et votre école va vous regarder autrement !"
+  - title: "Grimpe la Tour des Skillz"
+    content: "Chaque marche réussie fait grimper votre enfant d'un cran. Un sans-faute la change en or, et Mister Skoolz explique chaque erreur pour que la notion soit comprise, pas seulement retenue. Des parties courtes, idéales après l'école."
     images:
-      - src: "/website/images/skoolz/capture_skoolz_001.png"
-        alt: "Écran d'accueil de Skoolz avec les modes Duel et Solo"
-      - src: "/website/images/skoolz/capture_skoolz_008.png"
-        alt: "Duel en ligne — deux personnages s'affrontent en répondant à une question"
-      - src: "/website/images/skoolz/capture_skoolz_007.png"
-        alt: "Lancement d'un duel de physique-chimie entre deux joueurs"
-      - src: "/website/images/skoolz/capture_skoolz_011.png"
-        alt: "Question à choix multiple dans une salle de classe"
-      - src: "/website/images/skoolz/capture_skoolz_010.png"
-        alt: "Niveau solo encadré par un professeur, sur la comparaison de nombres décimaux"
-      - src: "/website/images/skoolz/capture_skoolz_009.png"
-        alt: "Carte d'un parcours scolaire à explorer"
-      - src: "/website/images/skoolz/capture_skoolz_006.png"
-        alt: "Sélection des modes de jeu — extra-scolaire, scolaire et amis"
-      - src: "/website/images/skoolz/capture_skoolz_002.png"
-        alt: "Classement des joueurs, en mode classique et compétitif"
-      - src: "/website/images/skoolz/capture_skoolz_003.png"
-        alt: "Système de ligues, des rangs Bronze à Or"
-      - src: "/website/images/skoolz/capture_skoolz_004.png"
-        alt: "Boutique avec packs et avatars à débloquer"
-      - src: "/website/images/skoolz/capture_skoolz_005.png"
-        alt: "Chambre du personnage avec quêtes, dressing et badges"
-   # button:
-   #   enable: true
-   #   label: Check it out
-   #   link: /contact
+      - src: "/website/images/skoolz/tour/tower.jpg"
+        alt: "Les étages de la 6e dans la Tour des Skillz, avec des marches en or"
+      - src: "/website/images/skoolz/tour/qcm.jpg"
+        alt: "Question à choix multiple sur la lecture des fractions"
+      - src: "/website/images/skoolz/tour/link.jpg"
+        alt: "Question à relier : chaque fraction avec sa lecture"
+      - src: "/website/images/skoolz/tour/swipe.jpg"
+        alt: "Question vrai ou faux sur les fractions"
+  - title: "Bats les Gardiens, gagne leurs Sceaux"
+    content: "Au sommet de chaque palier, un duel : réponds juste pour toucher le Gardien, esquive ses sphères, et remporte son Sceau. Trois Gardiens par classe, et bientôt les classes suivantes."
+    images:
+      - src: "/website/images/skoolz/tour/duel.jpg"
+        alt: "Duel contre M. Césarius : Léa esquive une sphère"
+      - src: "/website/images/skoolz/tour/seal.jpg"
+        alt: "Remise du Sceau de M. Césarius"
+      - src: "/website/images/skoolz/tour/victory.jpg"
+        alt: "Mister Skoolz félicite l'élève : classe de 6e terminée"
+  - title: "Parents, relevez le défi !"
+    content: "Défiez vos enfants sur le programme scolaire : êtes-vous encore capable de battre un élève de 6e ? Installez Skoolz, jouez ensemble, et voyez qui grimpe le plus haut."
+    images:
+      - src: "/website/images/skoolz/tour/qcm.jpg"
+        alt: "Une question de 6e : saurez-vous y répondre ?"
 
 # workflow
 workflow: 

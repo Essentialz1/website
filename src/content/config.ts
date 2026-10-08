@@ -7,6 +7,8 @@ const homepage = defineCollection({
       title: z.string().optional(),
       content: z.string().optional(),
       image: z.string().optional(),
+      video: z.string().optional(),
+      poster: z.string().optional(),
       button: z.object({
         label: z.string(),
         link: z.string().default("#"),

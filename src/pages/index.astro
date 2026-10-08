@@ -63,7 +63,22 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
           }
 
           {
-            banner?.image && (
+            banner?.video && (
+              <video
+                class="mx-auto mt-12 w-[300px] max-w-full rounded-[28px] shadow-lg"
+                src={banner.video}
+                poster={banner.poster}
+                autoplay
+                muted
+                loop
+                playsinline
+                aria-label="Skoolz en jeu : la tour, un duel contre un Gardien et la remise d'un Sceau"
+              />
+            )
+          }
+
+          {
+            !banner?.video && banner?.image && (
               <Image
                 class="mx-auto mt-12"
                 src={banner?.image}
@@ -79,27 +94,19 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
   </section>
 
   <!-- Features -->
-   <!--
   <section class="section bg-theme-light">
     <div class="container">
       <div class="text-center">
-        <h2>{markdownify(feature!.title)}</h2>
+        <h2 set:html={markdownify(feature?.title)} />
       </div>
-      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
         {
-          feature!.features.map((item: any, i: number) => (
+          feature?.features.map((item: any) => (
             <div class="feature-card rounded-xl bg-white p-5 pb-8 text-center">
               {item.icon && (
-                // <Image
-                //   class="mx-auto"
-                //   src={item.icon}
-                //   width={30}
-                //   height={30}
-                //   alt=""
-                // />
                 <img
                   class="mx-auto"
-                  alt={item.icon}
+                  alt=""
                   src={item.icon}
                   width={30}
                   height={30}
@@ -115,7 +122,7 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
       </div>
     </div>
   </section>
--->
+
   <!-- Services -->
   {
     services!.map((service: any, index: number) => {
@@ -190,16 +197,21 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
 
     // astro:page-load event is fired when the page is loaded
     document.addEventListener("astro:page-load", () => {
-      new Swiper(".service-carousel .swiper", {
-        modules: [Pagination, Autoplay],
-        autoplay: {
-          delay: 3000,
-        },
-        pagination: {
-          type: "bullets",
-          el: ".service-carousel .pagination",
-          clickable: true,
-        },
+      // One Swiper per carousel, each with its own bullets.
+      document.querySelectorAll(".service-carousel").forEach((carousel) => {
+        const swiper = carousel.querySelector(".swiper");
+        if (!swiper) return;
+        new Swiper(swiper as HTMLElement, {
+          modules: [Pagination, Autoplay],
+          autoplay: {
+            delay: 3000,
+          },
+          pagination: {
+            type: "bullets",
+            el: carousel.querySelector(".pagination") as HTMLElement,
+            clickable: true,
+          },
+        });
       });
     });
   </script>

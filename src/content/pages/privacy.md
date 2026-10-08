@@ -4,64 +4,62 @@ description: "privacy"
 draft: false
 ---
 
-Date de dernière mise à jour : 28 octobre 2024
+Date de dernière mise à jour : 8 octobre 2026
 
 #### 1. Introduction
 
-La présente Politique de Confidentialité a pour but de vous informer sur la manière dont School Rivals (ci-après "le Jeu") collecte, utilise, protège et partage vos informations personnelles. En utilisant le Jeu, vous acceptez les termes de cette politique.
+La présente Politique de Confidentialité explique comment l'application Skoolz (ci-après « l'Application »), éditée par EssentialZ, collecte, utilise et protège vos informations personnelles. Skoolz s'adresse notamment à des élèves mineurs : nous limitons la collecte au strict nécessaire au fonctionnement du jeu.
 
 #### 2. Données Collectées
 
-Nous collectons différents types de données personnelles lorsque vous interagissez avec le Jeu, y compris :
+**Informations de compte** : pseudo, avatar choisi, et selon le mode de connexion, votre adresse e-mail ou l'identifiant fourni par Apple ou Google. Le mot de passe n'est jamais stocké en clair.
 
-Informations de Compte : telles que votre nom, adresse e-mail et informations de connexion.
-Informations de Jeu : données relatives à votre progression, scores et performances dans le Jeu.
-Données Techniques : incluant l’adresse IP, les identifiants de l’appareil, le type de navigateur, et les données d'utilisation du site.
+**Informations de jeu** : votre progression dans la Tour des Skillz (marches réussies, scores, Gardiens battus, Sceaux obtenus).
+
+**Statistiques d'utilisation anonymes** : pour améliorer le jeu, l'Application envoie des statistiques de navigation à Umami, un outil de mesure d'audience respectueux de la vie privée. Ces statistiques contiennent un identifiant d'installation tiré au hasard, le modèle et le système de l'appareil, la langue, la version de l'Application et les actions de jeu (par exemple : marche commencée, réponse donnée, Gardien battu). Elles ne contiennent ni nom, ni adresse e-mail, ni identifiant publicitaire, et ne sont pas reliées à votre compte.
+
+**Pas de publicité** : l'Application n'affiche pas de publicité, ne collecte pas d'identifiant publicitaire et ne vous suit pas sur d'autres applications ou sites.
 
 #### 3. Utilisation des Données
 
 Les données recueillies sont utilisées pour :
 
-Assurer le bon fonctionnement et l’amélioration de School Rivals.
-Personnaliser votre expérience de jeu.
-Gérer votre compte et vous fournir un support utilisateur.
-Envoyer des notifications importantes ou des mises à jour relatives au Jeu.
+- faire fonctionner votre compte et sauvegarder votre progression ;
+- améliorer le contenu et l'équilibre du jeu à partir des statistiques anonymes ;
+- répondre à vos demandes d'assistance.
 
-#### 4. Partage des Données
+Elles ne sont jamais vendues.
 
-Nous ne partageons pas vos données personnelles avec des tiers, sauf dans les cas suivants :
+#### 4. Partage et Hébergement des Données
 
-Si nous faisons appel à des prestataires de services pour le bon fonctionnement du Jeu (par exemple, pour l'hébergement ou l'analyse de données).
-Si la loi nous y oblige ou pour répondre à une demande légale.
-En cas de fusion, acquisition ou vente d’actifs, vos données peuvent être transférées au nouveau propriétaire.
+Les données de compte et de jeu sont hébergées sur les serveurs d'EssentialZ. Les statistiques anonymes sont traitées par Umami. Nous ne partageons vos données avec des tiers que si la loi nous y oblige ou pour répondre à une demande légale.
 
 #### 5. Sécurité des Données
 
-Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos informations personnelles contre l'accès non autorisé, l'altération, la divulgation ou la destruction. Cependant, aucune transmission de données sur Internet n'est totalement sécurisée, et nous ne pouvons garantir la sécurité absolue de vos données.
+Les échanges entre l'Application et nos serveurs sont chiffrés. Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos informations contre l'accès non autorisé, l'altération, la divulgation ou la destruction. Aucune transmission sur Internet n'étant totalement sécurisée, nous ne pouvons toutefois garantir une sécurité absolue.
 
 #### 6. Conservation des Données
 
-Vos données personnelles sont conservées uniquement pendant la durée nécessaire aux fins pour lesquelles elles ont été collectées, ou conformément aux exigences légales applicables.
+Les données de compte et de jeu sont conservées tant que le compte existe. Elles sont supprimées lorsque vous supprimez votre compte.
 
-#### 7. Vos Droits
+#### 7. Supprimer votre Compte
 
-Conformément à la législation applicable, vous disposez des droits suivants :
+Vous pouvez supprimer votre compte à tout moment depuis l'Application (Paramètres > Mon Compte > Supprimer mon compte), ou en suivant les instructions de la page [Suppression de compte](/website/deleteAccount.html).
 
-Droit d'accès : Vous pouvez demander à accéder aux données que nous détenons sur vous.
-Droit de rectification : Vous pouvez demander la correction de données inexactes.
-Droit à l’effacement : Vous pouvez demander la suppression de vos données personnelles, sous certaines conditions.
-Droit d’opposition : Vous pouvez vous opposer au traitement de vos données, sauf en cas de nécessité légale ou contractuelle.
+#### 8. Vos Droits
 
-Pour exercer vos droits, veuillez nous contacter à julien@essentialz.fr.
+Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition sur vos données. Si l'utilisateur est mineur, ces droits peuvent être exercés par son représentant légal.
 
-#### 8. Utilisation des Cookies
+Pour exercer vos droits, contactez-nous à julien@essentialz.fr. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).
 
-Le Jeu utilise des cookies et des technologies similaires pour améliorer l'expérience utilisateur, analyser le trafic, et personnaliser le contenu. Vous pouvez gérer vos préférences de cookies dans les paramètres de votre navigateur.
+#### 9. Cookies
 
-#### 9. Modifications de la Politique de Confidentialité
+L'Application n'utilise pas de cookies.
 
-Nous pouvons mettre à jour cette Politique de Confidentialité à tout moment. En cas de modification importante, nous vous en informerons par le biais du Jeu ou par un autre moyen. Nous vous invitons à consulter régulièrement cette page pour vous tenir informé des éventuels changements.
+#### 10. Modifications de la Politique de Confidentialité
 
-#### 10. Contact
+Nous pouvons mettre à jour cette Politique de Confidentialité. En cas de modification importante, nous vous en informerons dans l'Application. La date de dernière mise à jour figure en haut de cette page.
 
-Pour toute question relative à cette Politique de Confidentialité, veuillez nous contacter à julien@essentialz.fr.
+#### 11. Contact
+
+Pour toute question relative à cette Politique de Confidentialité : julien@essentialz.fr.
