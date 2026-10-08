@@ -1,0 +1,42 @@
+---
+import Base from "@/layouts/Base.astro";
+
+// Ad review page: not in the menu, not indexed.
+const videos = [
+  { file: "skoolz_ad_parents_9x16_quiz.mp4", label: "Reels / Stories (9:16) · musique quiz", width: 340 },
+  { file: "skoolz_ad_parents_9x16_boss.mp4", label: "Reels / Stories (9:16) · musique boss", width: 340 },
+  { file: "skoolz_ad_parents_4x5_quiz.mp4", label: "Fil Insta / Facebook (4:5) · musique quiz", width: 420 },
+  { file: "skoolz_ad_parents_4x5_boss.mp4", label: "Fil Insta / Facebook (4:5) · musique boss", width: 420 },
+];
+---
+
+<Base title="Pub Skoolz" noindex={true}>
+  <section class="section">
+    <div class="container text-center">
+      <h1 class="h2">Pub Skoolz – parents</h1>
+      <p class="mt-4">Quatre versions à comparer. Activez le son avec le bouton du lecteur.</p>
+      <div class="mt-10 grid gap-10 md:grid-cols-2">
+        {
+          videos.map((video) => (
+            <figure>
+              <video
+                class="mx-auto max-w-full rounded-[20px] shadow-lg"
+                style={`width:${video.width}px`}
+                src={`/website/videos/pub/${video.file}`}
+                controls
+                playsinline
+                preload="metadata"
+              />
+              <figcaption class="mt-3">
+                {video.label} ·{" "}
+                <a class="text-primary" href={`/website/videos/pub/${video.file}`} download>
+                  télécharger
+                </a>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
