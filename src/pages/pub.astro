@@ -2,6 +2,8 @@
 import Base from "@/layouts/Base.astro";
 
 // Ad review page: not in the menu, not indexed.
+// Bumped with each new cut: the files keep their names, so browsers would replay a cached one.
+const VERSION = "d89f64c8";
 const videos = [
   { file: "skoolz_ad_parents_9x16_quiz.mp4", label: "Reels / Stories (9:16) · musique quiz", width: 340 },
   { file: "skoolz_ad_parents_9x16_boss.mp4", label: "Reels / Stories (9:16) · musique boss", width: 340 },
@@ -22,7 +24,7 @@ const videos = [
               <video
                 class="mx-auto max-w-full rounded-[20px] shadow-lg"
                 style={`width:${video.width}px`}
-                src={`/website/videos/pub/${video.file}`}
+                src={`/website/videos/pub/${video.file}?v=${VERSION}`}
                 controls
                 playsinline
                 preload="metadata"
