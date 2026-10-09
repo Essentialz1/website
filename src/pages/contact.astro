@@ -7,6 +7,8 @@ import { getEntryBySlug } from "astro:content";
 const entry = await getEntryBySlug("contact", "index");
 const { contact_form_action } = config.params;
 const { title, description, info } = entry?.data;
+// The site is static: the form opens the visitor's mail app, filled in, unless a form service is set.
+const contactEmail = "julien@essentialz.fr";
 ---
 
 <Base title={title} description={description}>
@@ -15,13 +17,18 @@ const { title, description, info } = entry?.data;
       <h1 class="text-center font-normal" set:html={markdownify(title)} />
       <div class="section row pb-0">
         <div class="col-12 md:col-6 lg:col-7">
-          <form class="contact-form" method="POST" action={contact_form_action}>
+          <form
+            id="contact-form"
+            class="contact-form"
+            method="POST"
+            action={contact_form_action}
+            data-email={contact_form_action ? undefined : contactEmail}>
             <div class="mb-3">
               <input
                 class="form-input w-full rounded"
                 name="name"
                 type="text"
-                placeholder="Name"
+                placeholder="Nom"
                 required
               />
             </div>
@@ -30,7 +37,7 @@ const { title, description, info } = entry?.data;
                 class="form-input w-full rounded"
                 name="email"
                 type="email"
-                placeholder="Your email"
+                placeholder="Votre e-mail"
                 required
               />
             </div>
@@ -39,17 +46,19 @@ const { title, description, info } = entry?.data;
                 class="form-input w-full rounded"
                 name="subject"
                 type="text"
-                placeholder="Subject"
+                placeholder="Objet"
                 required
               />
             </div>
             <div class="mb-3">
               <textarea
                 class="form-textarea w-full rounded-md"
+                name="message"
                 rows="7"
-                placeholder="Your message"></textarea>
+                placeholder="Votre message"
+                required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary"> Send Now</button>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
           </form>
         </div>
         <div class="content col-12 md:col-6 lg:col-5">
@@ -69,3 +78,19 @@ const { title, description, info } = entry?.data;
     </div>
   </section>
 </Base>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const to = form?.dataset.email;
+  if (form && to) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const body = `${data.get("message")}
+
+${data.get("name")} (${data.get("email")})`;
+      const subject = String(data.get("subject"));
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  }
+</script>
