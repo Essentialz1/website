@@ -67,7 +67,7 @@ call_to_action:
   title: Besoin de plus d'information ?
   content: Toute notre équipe est prête à répondre à toutes vos questions.
   image: '/website/images/cta-skoolz.png'
-  alt: "Une élève de Skoolz pose une question dans sa salle de classe"
+  alt: "Mister Skoolz : une question ? Écrivez-nous !"
   button:
     enable: true
     label: "Contactez-nous"
