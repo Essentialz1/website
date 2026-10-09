@@ -2,8 +2,8 @@
 banner:
   title: "La seule appli à laquelle vous DEMANDEREZ à vos enfants de jouer"
   content: "Skoolz transforme le programme de 6e en défis : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et gagne leurs Sceaux. Et vous, relèverez-vous le défi ?"
-  video: /website/videos/skoolz-teaser.mp4
-  poster: /website/videos/skoolz-teaser-poster.jpg
+  video: /website/videos/skoolz-teaser-0685558d.mp4
+  poster: /website/videos/skoolz-teaser-poster-0685558d.jpg
   image: /website/images/banner-home.png
   stores:
     - name: "App Store"
