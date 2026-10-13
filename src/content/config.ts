@@ -18,7 +18,8 @@ const homepage = defineCollection({
         name: z.string(),
         link: z.string(),
         badge: z.string(),
-        alt: z.string().optional()
+        alt: z.string().optional(),
+        event: z.string().optional()
       })).optional(),
       apk: z.object({
         enable: z.boolean().default(true),
@@ -36,7 +37,8 @@ const homepage = defineCollection({
       content: z.string().optional(),
       images: z.array(z.object({
         src: z.string(),
-        alt: z.string().optional()
+        alt: z.string().optional(),
+        event: z.string().optional()
       })).optional(),
       button: z.object({
         label: z.string(),

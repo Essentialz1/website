@@ -10,10 +10,12 @@ banner:
       link: "https://apps.apple.com/fr/app/skoolz/id6744245849"
       badge: "/website/images/badges/app-store-fr.svg"
       alt: "Télécharger Skoolz dans l'App Store"
+      event: "site_store_ios"
     - name: "Google Play"
       link: "https://play.google.com/store/apps/details?id=com.EssentialZ.Skoolz&hl=fr"
       badge: "/website/images/badges/google-play-fr.png"
       alt: "Disponible sur Google Play"
+      event: "site_store_android"
 
 # feature
 feature:

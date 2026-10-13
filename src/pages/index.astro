@@ -34,7 +34,12 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
             banner?.stores && (
               <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
                 {banner.stores.map((store: any) => (
-                  <a href={store.link} target="_blank" rel="noopener">
+                  <a
+                    href={store.link}
+                    target="_blank"
+                    rel="noopener"
+                    data-umami-event={store.event}
+                  >
                     <img
                       class="h-[48px] w-auto"
                       src={store.badge}
