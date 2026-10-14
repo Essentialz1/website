@@ -19,8 +19,28 @@
 
   "nav_button": {
     "enable": true,
-    "label": "Contactez-nous",
-    "link": "/website/contact"
+    "label": "Télécharger gratuitement",
+    "link": "/website#download",
+    "store": true
+  },
+
+  "stores": {
+    "ios": {
+      "name": "App Store",
+      "link": "https://apps.apple.com/fr/app/skoolz/id6744245849",
+      "badge": "/website/images/badges/app-store-fr.svg",
+      "badge_width": 152,
+      "alt": "Télécharger Skoolz dans l'App Store",
+      "event": "site_store_ios"
+    },
+    "android": {
+      "name": "Google Play",
+      "link": "https://play.google.com/store/apps/details?id=com.EssentialZ.Skoolz&hl=fr",
+      "badge": "/website/images/badges/google-play-fr.png",
+      "badge_width": 162,
+      "alt": "Disponible sur Google Play",
+      "event": "site_store_android"
+    }
   },
 
   "params": {

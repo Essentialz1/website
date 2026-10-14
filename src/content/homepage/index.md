@@ -1,21 +1,21 @@
 ---
 banner:
   title: "La seule appli à laquelle vous DEMANDEREZ à vos enfants de jouer"
-  content: "Skoolz transforme le programme du collège en défis : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et gagne leurs Sceaux. Et vous, relèverez-vous le défi ?"
+  content: "Skoolz transforme le programme du collège en jeu : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et révise sans même s'en rendre compte."
+  cta: "Télécharger gratuitement"
+  reassurance:
+    - "Gratuit"
+    - "iPhone et Android"
+    - "Le programme du collège"
   video: /website/videos/skoolz-teaser-c2784653.mp4
   poster: /website/videos/skoolz-teaser-poster-c2784653.jpg
   image: /website/images/banner-home.png
-  stores:
-    - name: "App Store"
-      link: "https://apps.apple.com/fr/app/skoolz/id6744245849"
-      badge: "/website/images/badges/app-store-fr.svg"
-      alt: "Télécharger Skoolz dans l'App Store"
-      event: "site_store_ios"
-    - name: "Google Play"
-      link: "https://play.google.com/store/apps/details?id=com.EssentialZ.Skoolz&hl=fr"
-      badge: "/website/images/badges/google-play-fr.png"
-      alt: "Disponible sur Google Play"
-      event: "site_store_android"
+
+# download
+download:
+  title: "Prêt à grimper la Tour ?"
+  content: "Skoolz est gratuit sur iPhone et Android. Installez-le et lancez un premier défi en famille."
+  cta: "Télécharger gratuitement"
 
 # feature
 feature:

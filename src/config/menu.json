@@ -1,10 +1,6 @@
 {
   "main": [
     {
-      "name": "Home",
-      "url": "/website"
-    },
-    {
       "name": "Contact",
       "url": "/website/contact"
     }

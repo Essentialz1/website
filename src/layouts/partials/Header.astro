@@ -101,8 +101,10 @@ const { main }: { main: NavigationLink[] } = menu;
         nav_button.enable && (
           <div class="block md:hidden">
             <a
-              class="btn btn-primary z-0 ml-auto py-[14px]"
+              class="btn btn-primary z-0 ml-auto py-[14px] normal-case"
               href={nav_button.link}
+              data-store-link={nav_button.store ? "" : undefined}
+              data-umami-event-placement="menu"
             >
               {nav_button.label}
             </a>
@@ -114,8 +116,10 @@ const { main }: { main: NavigationLink[] } = menu;
       nav_button.enable && (
         <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 md:flex md:min-w-[150px] lg:min-w-[200px]">
           <a
-            class="btn btn-primary z-0 ml-auto py-[14px]"
+            class="btn btn-primary z-0 ml-auto py-[14px] normal-case"
             href={nav_button.link}
+            data-store-link={nav_button.store ? "" : undefined}
+            data-umami-event-placement="header"
           >
             {nav_button.label}
           </a>

@@ -9,6 +9,8 @@ const homepage = defineCollection({
       image: z.string().optional(),
       video: z.string().optional(),
       poster: z.string().optional(),
+      cta: z.string().optional(),
+      reassurance: z.array(z.string()).optional(),
       button: z.object({
         label: z.string(),
         link: z.string().default("#"),
@@ -27,6 +29,11 @@ const homepage = defineCollection({
         note: z.string().optional(),
         link: z.string().default("#")
       }).optional()
+    }).optional(),
+    download: z.object({
+      title: z.string(),
+      content: z.string().optional(),
+      cta: z.string()
     }).optional(),
     feature: z.object({
       title: z.string().optional(),

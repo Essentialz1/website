@@ -243,3 +243,54 @@
   @apply prose-tr:border-border;
   @apply prose-td:px-3 prose-td:py-4;
 }
+
+// Download buttons: one big store button on phones, both badges elsewhere.
+// `.btn` doubled up to win over .btn / .btn-primary (display, capitalize).
+.btn.store-primary {
+  @apply hidden w-full max-w-[360px] justify-center py-5 text-lg normal-case shadow-[0_8px_20px_-6px_rgba(255,197,11,.6)];
+}
+html[data-platform="ios"],
+html[data-platform="android"] {
+  .btn.store-primary {
+    @apply inline-flex;
+  }
+  .store-badges {
+    @apply hidden;
+  }
+}
+
+.reassurance {
+  @apply mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-bold text-dark;
+  li {
+    @apply flex items-center gap-1.5;
+  }
+  svg {
+    @apply h-4 w-4 fill-[#2e9e5b];
+  }
+}
+
+.download-band {
+  @apply py-[70px];
+  background: linear-gradient(160deg, #1f1640, #4a2380);
+}
+
+.sticky-download {
+  @apply fixed inset-x-0 bottom-0 z-40 hidden items-center gap-3 border-t border-border bg-white px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(0,0,0,.25)] transition-transform duration-300;
+  transform: translateY(110%);
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  img {
+    @apply rounded-xl;
+  }
+  &.is-visible {
+    transform: translateY(0);
+  }
+}
+html[data-platform="ios"],
+html[data-platform="android"] {
+  .sticky-download {
+    @apply flex;
+  }
+  body:has(.sticky-download) {
+    @apply pb-20;
+  }
+}

@@ -154,6 +154,23 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Set html[data-platform] before paint so the right download button shows without a flash -->
+    <script is:inline>
+      (function () {
+        function platform() {
+          var ua = navigator.userAgent;
+          if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) return "ios";
+          if (/Android/i.test(ua)) return "android";
+          return "other";
+        }
+        function apply() {
+          document.documentElement.dataset.platform = platform();
+        }
+        apply();
+        document.addEventListener("astro:after-swap", apply);
+      })();
+    </script>
+
     <!-- Umami, same website id as the app: page views on /website/... and the data-umami-event clicks -->
     {
       config.params.umami_website_id && (
@@ -174,5 +191,25 @@ const { title, meta_title, description, image, noindex, canonical } =
       <slot />
     </main>
     <Footer />
+    <script>
+      import config from "@/config/config.json";
+
+      // On a phone, send every download button straight to its store.
+      // Elsewhere they keep their href (the badges block on the homepage).
+      document.addEventListener("astro:page-load", () => {
+        const platform = document.documentElement.dataset.platform;
+        const store = config.stores[platform as keyof typeof config.stores];
+        if (!store) return;
+        document.querySelectorAll<HTMLAnchorElement>("[data-store-link]").forEach((link) => {
+          link.href = store.link;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.dataset.umamiEvent = store.event;
+        });
+        document.querySelectorAll("[data-store-name]").forEach((el) => {
+          el.textContent = store.name;
+        });
+      });
+    </script>
   </body>
 </html>

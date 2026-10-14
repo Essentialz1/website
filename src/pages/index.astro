@@ -1,12 +1,15 @@
 ---
 import { Image } from "astro:assets";
+import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/components/Cta.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
 
 const homepage = await getEntryBySlug("homepage", "index");
-const { banner, feature, services, workflow, call_to_action } = homepage.data;
+const { banner, download, feature, services, workflow, call_to_action } =
+  homepage.data;
+const stores = Object.values(config.stores);
 ---
 
 <Base>
@@ -30,29 +33,57 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
             )
           }
 
-          {
-            banner?.stores && (
-              <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-                {banner.stores.map((store: any) => (
+          <div id="download" class="mt-8 scroll-mt-28">
+            {
+              banner?.cta && (
+                <a
+                  class="btn btn-primary store-primary"
+                  href="#download"
+                  data-store-link
+                  data-umami-event-placement="hero"
+                  data-hide-sticky
+                >
+                  {banner.cta}
+                </a>
+              )
+            }
+            <div class="store-badges flex flex-wrap items-center justify-center gap-4">
+              {
+                stores.map((store) => (
                   <a
                     href={store.link}
                     target="_blank"
                     rel="noopener"
                     data-umami-event={store.event}
+                    data-umami-event-placement="hero"
                   >
                     <img
                       class="h-[48px] w-auto"
                       src={store.badge}
-                      width={store.name === "App Store" ? 152 : 162}
+                      width={store.badge_width}
                       height={48}
                       alt={store.alt}
                       loading="eager"
                     />
                   </a>
-                ))}
-              </div>
-            )
-          }
+                ))
+              }
+            </div>
+            {
+              banner?.reassurance && (
+                <ul class="reassurance">
+                  {banner.reassurance.map((item: string) => (
+                    <li>
+                      <svg viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M7.6 13.4 4.2 10l-1.4 1.4 4.8 4.8L17.2 6.6l-1.4-1.4z" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+          </div>
 
           {
             banner?.apk?.enable && (
@@ -201,6 +232,21 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
     import "swiper/css/pagination";
     import { Autoplay, Pagination } from "swiper/modules";
 
+    // Show the download bar only while no other download button is on screen.
+    document.addEventListener("astro:page-load", () => {
+      const bar = document.querySelector("[data-sticky-download]");
+      if (!bar) return;
+      const visible = new Set<Element>();
+      const targets = document.querySelectorAll("[data-hide-sticky]");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e) =>
+          e.isIntersecting ? visible.add(e.target) : visible.delete(e.target),
+        );
+        bar.classList.toggle("is-visible", visible.size === 0);
+      });
+      targets.forEach((t) => observer.observe(t));
+    });
+
     // astro:page-load event is fired when the page is loaded
     document.addEventListener("astro:page-load", () => {
       // One Swiper per carousel, each with its own bullets.
@@ -241,6 +287,66 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
     />
   </section>
 -->
+  <!-- Download -->
+  {
+    download && (
+      <section class="download-band">
+        <div class="container text-center">
+          <h2 class="text-white">{download.title}</h2>
+          {download.content && <p class="mx-auto mt-4 max-w-[560px] text-white/80">{download.content}</p>}
+          <a
+            class="btn btn-primary store-primary mt-8"
+            href="#download"
+            data-store-link
+            data-umami-event-placement="download"
+            data-hide-sticky
+          >
+            {download.cta}
+          </a>
+          <div class="store-badges mt-8 flex flex-wrap items-center justify-center gap-4">
+            {
+              stores.map((store) => (
+                <a
+                  href={store.link}
+                  target="_blank"
+                  rel="noopener"
+                  data-umami-event={store.event}
+                  data-umami-event-placement="download"
+                >
+                  <img
+                    class="h-[48px] w-auto"
+                    src={store.badge}
+                    width={store.badge_width}
+                    height={48}
+                    alt={store.alt}
+                    loading="lazy"
+                  />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- Call to Action -->
   <Cta cta={call_to_action} />
+
+  <!-- Phones only: download bar once the hero button is out of view -->
+  <div class="sticky-download" data-sticky-download>
+    <img src="/website/images/favicon-skoolz.png" width="44" height="44" alt="" />
+    <p class="flex-1 leading-tight">
+      <span class="block font-bold text-dark">Skoolz</span>
+      <span class="text-sm">Gratuit sur <span data-store-name></span></span>
+    </p>
+    <a
+      class="btn btn-primary px-5 py-3"
+      href="#download"
+      data-store-link
+      data-umami-event-placement="sticky"
+    >
+      Télécharger
+    </a>
+  </div>
 </Base>
