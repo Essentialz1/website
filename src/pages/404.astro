@@ -7,6 +7,16 @@ const { Content } = await entry.render();
 ---
 
 <Base title={entry.data.title}>
+  <!-- Old addresses: the site lived under /website, and IONOS parked the domain on /defaultsite -->
+  <script is:inline>
+    (function () {
+      var path = location.pathname;
+      var target = null;
+      if (path === "/defaultsite" || path.indexOf("/defaultsite/") === 0) target = "/";
+      else if (path === "/website" || path.indexOf("/website/") === 0) target = path.slice("/website".length) || "/";
+      if (target) location.replace(target + location.search + location.hash);
+    })();
+  </script>
   <section class="section">
     <div class="container">
       <div class="flex h-[40vh] items-center justify-center">
