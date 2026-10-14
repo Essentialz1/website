@@ -24,14 +24,14 @@ const videos = [
               <video
                 class="mx-auto max-w-full rounded-[20px] shadow-lg"
                 style={`width:${video.width}px`}
-                src={`/website/videos/pub/${video.file}?v=${VERSION}`}
+                src={`/videos/pub/${video.file}?v=${VERSION}`}
                 controls
                 playsinline
                 preload="metadata"
               />
               <figcaption class="mt-3">
                 {video.label} ·{" "}
-                <a class="text-primary" href={`/website/videos/pub/${video.file}`} download>
+                <a class="text-primary" href={`/videos/pub/${video.file}`} download>
                   télécharger
                 </a>
               </figcaption>

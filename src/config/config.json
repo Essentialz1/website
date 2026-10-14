@@ -1,11 +1,11 @@
 {
   "site": {
     "title": "Essentialz - Skoolz",
-    "base_url": "https://essentialz1.github.io",
-    "base_path": "/website",
+    "base_url": "https://skoolz.io",
+    "base_path": "",
     "trailing_slash": false,
-    "favicon": "/website/images/favicon-skoolz.png",
-    "logo": "/website/images/logo-badge.png",
+    "favicon": "/images/favicon-skoolz.png",
+    "logo": "/images/logo-badge.png",
     "logo_width": "173",
     "logo_height": "75",
     "logo_text": "Skoolz"
@@ -20,7 +20,7 @@
   "nav_button": {
     "enable": true,
     "label": "Télécharger gratuitement",
-    "link": "/website#download",
+    "link": "/#download",
     "store": true
   },
 
@@ -28,7 +28,7 @@
     "ios": {
       "name": "App Store",
       "link": "https://apps.apple.com/fr/app/skoolz/id6744245849",
-      "badge": "/website/images/badges/app-store-fr.svg",
+      "badge": "/images/badges/app-store-fr.svg",
       "badge_width": 152,
       "alt": "Télécharger Skoolz dans l'App Store",
       "event": "site_store_ios"
@@ -36,7 +36,7 @@
     "android": {
       "name": "Google Play",
       "link": "https://play.google.com/store/apps/details?id=com.EssentialZ.Skoolz&hl=fr",
-      "badge": "/website/images/badges/google-play-fr.png",
+      "badge": "/images/badges/google-play-fr.png",
       "badge_width": 162,
       "alt": "Disponible sur Google Play",
       "event": "site_store_android"
@@ -53,7 +53,7 @@
 
   "metadata": {
     "meta_author": "EssentialZ",
-    "meta_image": "/website/images/og-image-tour.png",
+    "meta_image": "/images/og-image-tour.png",
     "meta_description": "Skoolz : le programme du collège en défis. Votre enfant grimpe la Tour des Skillz, affronte les Gardiens et gagne leurs Sceaux."
   }
 }

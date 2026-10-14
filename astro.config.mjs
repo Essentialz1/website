@@ -10,8 +10,7 @@ import config from "./src/config/config.json";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://essentialZ1.github.io",
-  base: "/website",
+  site: "https://skoolz.io",
   trailingSlash: "never",
   image: {
     service: squooshImageService(),

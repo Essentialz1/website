@@ -2,7 +2,7 @@
   "main": [
     {
       "name": "Contact",
-      "url": "/website/contact"
+      "url": "/contact"
     }
   ],
   "footer": [
@@ -11,7 +11,7 @@
       "menu": [
         {
           "text": "Essentialz",
-          "url": "/website"
+          "url": "/"
         }
       ]
     },
@@ -20,7 +20,7 @@
       "menu": [
         {
           "text": "Skoolz",
-          "url": "/website"
+          "url": "/"
         }
       ]
     },
@@ -29,11 +29,11 @@
       "menu": [
         {
           "text": "Politique de confidentialité",
-          "url": "/website/privacy"
+          "url": "/privacy"
         },
         {
           "text": "Conditions générales d'utilisation",
-          "url": "/website/cgu"
+          "url": "/cgu"
         }
       ]
     }

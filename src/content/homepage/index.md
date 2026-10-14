@@ -7,9 +7,9 @@ banner:
     - "Gratuit"
     - "iPhone et Android"
     - "Le programme du collège"
-  video: /website/videos/skoolz-teaser-c2784653.mp4
-  poster: /website/videos/skoolz-teaser-poster-c2784653.jpg
-  image: /website/images/banner-home.png
+  video: /videos/skoolz-teaser-c2784653.mp4
+  poster: /videos/skoolz-teaser-poster-c2784653.jpg
+  image: /images/banner-home.png
 
 # download
 download:
@@ -35,43 +35,43 @@ services:
   - title: "Grimpe la Tour des Skillz"
     content: "Chaque marche réussie fait grimper votre enfant d'un cran. Un sans-faute la change en or, et Mister Skoolz explique chaque erreur pour que la notion soit comprise, pas seulement retenue. Des parties courtes, idéales après l'école."
     images:
-      - src: "/website/images/skoolz/tour/tower.jpg"
+      - src: "/images/skoolz/tour/tower.jpg"
         alt: "Les étages de la 6e dans la Tour des Skillz, avec des marches en or"
-      - src: "/website/images/skoolz/tour/qcm.jpg"
+      - src: "/images/skoolz/tour/qcm.jpg"
         alt: "Question à choix multiple sur la lecture des fractions"
-      - src: "/website/images/skoolz/tour/link.jpg"
+      - src: "/images/skoolz/tour/link.jpg"
         alt: "Question à relier : chaque fraction avec sa lecture"
-      - src: "/website/images/skoolz/tour/swipe.jpg"
+      - src: "/images/skoolz/tour/swipe.jpg"
         alt: "Question vrai ou faux sur les fractions"
   - title: "Bats les Gardiens, gagne leurs Sceaux"
     content: "Au sommet de chaque palier, un duel : réponds juste pour toucher le Gardien, esquive ses sphères, et remporte son Sceau. Trois Gardiens par classe : la 6e est ouverte, la 5e, la 4e et la 3e arrivent bientôt."
     images:
-      - src: "/website/images/skoolz/tour/duel.jpg"
+      - src: "/images/skoolz/tour/duel.jpg"
         alt: "Duel contre M. Césarius : Léa esquive une sphère"
-      - src: "/website/images/skoolz/tour/seal.jpg"
+      - src: "/images/skoolz/tour/seal.jpg"
         alt: "Remise du Sceau de M. Césarius"
-      - src: "/website/images/skoolz/tour/victory.jpg"
+      - src: "/images/skoolz/tour/victory.jpg"
         alt: "Mister Skoolz félicite l'élève : classe de 6e terminée"
   - title: "Parents, relevez le défi !"
     content: "Défiez vos enfants sur le programme scolaire : êtes-vous encore capable de battre un collégien ? Installez Skoolz, jouez ensemble, et voyez qui grimpe le plus haut."
     images:
-      - src: "/website/images/skoolz/tour/qcm.jpg"
+      - src: "/images/skoolz/tour/qcm.jpg"
         alt: "Une question du collège : saurez-vous y répondre ?"
 
 # workflow
 workflow: 
   title: "Experience the best workflow with us"
-  image: "/website/images/banner.png"
+  image: "/images/banner.png"
   description: ""
 
 # call_to_action
 call_to_action:
   title: Besoin de plus d'information ?
   content: Toute notre équipe est prête à répondre à toutes vos questions.
-  image: '/website/images/cta-skoolz.png'
+  image: '/images/cta-skoolz.png'
   alt: "Mister Skoolz : une question ? Écrivez-nous !"
   button:
     enable: true
     label: "Contactez-nous"
-    link: "/website/contact"
+    link: "/contact"
 ---

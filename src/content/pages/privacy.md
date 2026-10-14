@@ -44,7 +44,7 @@ Les données de compte et de jeu sont conservées tant que le compte existe. Ell
 
 #### 7. Supprimer votre Compte
 
-Vous pouvez supprimer votre compte à tout moment depuis l'Application (Paramètres > Mon Compte > Supprimer mon compte), ou en suivant les instructions de la page [Suppression de compte](/website/deleteAccount.html).
+Vous pouvez supprimer votre compte à tout moment depuis l'Application (Paramètres > Mon Compte > Supprimer mon compte), ou en suivant les instructions de la page [Suppression de compte](/deleteAccount.html).
 
 #### 8. Vos Droits
 

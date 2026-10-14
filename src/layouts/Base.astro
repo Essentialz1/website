@@ -171,7 +171,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       })();
     </script>
 
-    <!-- Umami, same website id as the app: page views on /website/... and the data-umami-event clicks -->
+    <!-- Umami, same website id as the app: page views on skoolz.io and the data-umami-event clicks -->
     {
       config.params.umami_website_id && (
         <script
@@ -179,7 +179,7 @@ const { title, meta_title, description, image, noindex, canonical } =
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id={config.params.umami_website_id}
-          data-domains="essentialz1.github.io"
+          data-domains="skoolz.io,www.skoolz.io"
         />
       )
     }
