@@ -294,3 +294,13 @@ html[data-platform="android"] {
     @apply pb-20;
   }
 }
+
+.qr-popover {
+  @apply absolute right-0 top-full z-50 mt-3 w-[280px] rounded-xl border border-border bg-white p-5 text-center shadow-lg;
+  img[width="168"] {
+    @apply mx-auto;
+  }
+  &[hidden] {
+    @apply hidden;
+  }
+}

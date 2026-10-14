@@ -1,0 +1,61 @@
+---
+import Base from "@/layouts/Base.astro";
+import config from "@/config/config.json";
+
+// Target of the QR code: phones go straight to their store, others see both badges.
+const stores = Object.values(config.stores);
+---
+
+<Base title="Télécharger Skoolz" noindex={true}>
+  <section class="section">
+    <div class="container text-center">
+      <h1 class="h2">Télécharger Skoolz</h1>
+      <p class="mt-4">Gratuit sur iPhone et Android.</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        {
+          stores.map((store) => (
+            <a
+              href={store.link}
+              target="_blank"
+              rel="noopener"
+              data-umami-event={store.event}
+              data-umami-event-placement="qr"
+            >
+              <img
+                class="h-[48px] w-auto"
+                src={store.badge}
+                width={store.badge_width}
+                height={48}
+                alt={store.alt}
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import config from "@/config/config.json";
+
+    // Give Umami up to 1.5 s to log the scan, then leave for the store.
+    document.addEventListener("astro:page-load", () => {
+      const platform = document.documentElement.dataset.platform;
+      const store = config.stores[platform as keyof typeof config.stores];
+      if (!store) return;
+      const started = Date.now();
+      const go = () => {
+        const umami = (window as any).umami;
+        if (umami || Date.now() - started > 1500) {
+          Promise.resolve(umami?.track(store.event, { placement: "qr" }))
+            .catch(() => {})
+            .finally(() => location.replace(store.link));
+          setTimeout(() => location.replace(store.link), 800);
+        } else {
+          setTimeout(go, 100);
+        }
+      };
+      go();
+    });
+  </script>
+</Base>

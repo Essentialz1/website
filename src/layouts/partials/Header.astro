@@ -1,6 +1,6 @@
 ---
 import Logo from "@/components/Logo.astro";
-import { nav_button } from "@/config/config.json";
+import config, { nav_button } from "@/config/config.json";
 import menu from "@/config/menu.json";
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -18,6 +18,7 @@ export interface NavigationLink {
 }
 
 const { main }: { main: NavigationLink[] } = menu;
+const stores = Object.values(config.stores);
 ---
 
 <header class="header">
@@ -114,17 +115,64 @@ const { main }: { main: NavigationLink[] } = menu;
     </ul>
     {
       nav_button.enable && (
-        <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 md:flex md:min-w-[150px] lg:min-w-[200px]">
+        <div class="relative order-1 ml-auto hidden items-center md:order-2 md:ml-0 md:flex md:min-w-[150px] lg:min-w-[200px]">
           <a
             class="btn btn-primary z-0 ml-auto py-[14px] normal-case"
             href={nav_button.link}
             data-store-link={nav_button.store ? "" : undefined}
+            data-qr-toggle={nav_button.store ? "" : undefined}
             data-umami-event-placement="header"
           >
             {nav_button.label}
           </a>
+          {nav_button.store && (
+            <div class="qr-popover" data-qr-popover hidden>
+              <img src="/website/images/qr-download.svg" width="168" height="168" alt="QR code pour télécharger Skoolz" />
+              <p class="mt-3 font-bold text-dark">Scannez avec votre téléphone</p>
+              <p class="text-sm">Skoolz est gratuit sur iPhone et Android.</p>
+              <div class="mt-4 flex items-center justify-center gap-2">
+                {stores.map((store) => (
+                  <a
+                    href={store.link}
+                    target="_blank"
+                    rel="noopener"
+                    data-umami-event={store.event}
+                    data-umami-event-placement="header"
+                  >
+                    <img class="h-[36px] w-auto" src={store.badge} width={store.badge_width * 0.75} height={36} alt={store.alt} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )
     }
   </nav>
 </header>
+
+<script>
+  // Off phones the download button opens a QR code instead of a store.
+  let listeners: AbortController | undefined;
+  document.addEventListener("astro:page-load", () => {
+    listeners?.abort();
+    listeners = new AbortController();
+    const { signal } = listeners;
+    const toggle = document.querySelector<HTMLElement>("[data-qr-toggle]");
+    const popover = document.querySelector<HTMLElement>("[data-qr-popover]");
+    if (!toggle || !popover) return;
+    const platform = document.documentElement.dataset.platform;
+    if (platform === "ios" || platform === "android") return;
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      popover.hidden = !popover.hidden;
+    });
+    document.addEventListener("click", (e) => {
+      const target = e.target as Node;
+      if (!popover.contains(target) && !toggle.contains(target)) popover.hidden = true;
+    }, { signal });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") popover.hidden = true;
+    }, { signal });
+  });
+</script>
