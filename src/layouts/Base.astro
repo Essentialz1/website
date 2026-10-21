@@ -193,6 +193,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <Footer />
     <script>
       import config from "@/config/config.json";
+      import { tagStoreLinks } from "@/lib/utils/storeCampaign";
 
       // On a phone, send every download button straight to its store.
       // Elsewhere they keep their href (the badges block on the homepage).
@@ -210,6 +211,7 @@ const { title, meta_title, description, image, noindex, canonical } =
           el.textContent = store.name;
         });
       });
+      document.addEventListener("astro:page-load", tagStoreLinks);
     </script>
   </body>
 </html>

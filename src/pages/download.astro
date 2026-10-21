@@ -37,20 +37,22 @@ const stores = Object.values(config.stores);
 
   <script>
     import config from "@/config/config.json";
+    import { tagStoreLink } from "@/lib/utils/storeCampaign";
 
     // Give Umami up to 1.5 s to log the scan, then leave for the store.
     document.addEventListener("astro:page-load", () => {
       const platform = document.documentElement.dataset.platform;
       const store = config.stores[platform as keyof typeof config.stores];
       if (!store) return;
+      const link = tagStoreLink(store.link);
       const started = Date.now();
       const go = () => {
         const umami = (window as any).umami;
         if (umami || Date.now() - started > 1500) {
           Promise.resolve(umami?.track(store.event, { placement: "qr" }))
             .catch(() => {})
-            .finally(() => location.replace(store.link));
-          setTimeout(() => location.replace(store.link), 800);
+            .finally(() => location.replace(link));
+          setTimeout(() => location.replace(link), 800);
         } else {
           setTimeout(go, 100);
         }
