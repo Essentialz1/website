@@ -13,6 +13,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
 
 jobs:
   build:
@@ -34,6 +35,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # While Pages is set to "Deploy from a branch", each push also publishes the raw repo, a 404 site:
+      # deploy after it, or it can overwrite this one.
+      - name: Wait for GitHub's branch publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ "$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type || true)" = "legacy" ] || exit 0
+          for i in $(seq 1 30); do
+            state=$(gh run list -R "$GITHUB_REPOSITORY" --workflow pages-build-deployment --commit "$GITHUB_SHA" --json status --jq '.[0].status' || true)
+            [ "$state" = "completed" ] && exit 0
+            sleep 10
+          done
+          echo "GitHub's branch publish still runs after 5 min: deploying anyway."
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
