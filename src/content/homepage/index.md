@@ -1,14 +1,14 @@
 ---
 banner:
-  title: "La seule appli à laquelle vous DEMANDEREZ à vos enfants de jouer"
+  title: "Grimpe la Tour des Skillz, bats les Gardiens, et bientôt, défie tes potes dans l'Arène !"
   content: "Skoolz transforme le programme du collège en jeu : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et révise sans même s'en rendre compte."
   cta: "Télécharger gratuitement"
   reassurance:
     - "Gratuit"
     - "iPhone et Android"
     - "Le programme du collège"
-  video: /videos/skoolz-teaser-c2784653.mp4
-  poster: /videos/skoolz-teaser-poster-c2784653.jpg
+  video: /videos/skoolz-teaser-db8a1526.mp4
+  poster: /videos/skoolz-teaser-poster-db8a1526.jpg
   image: /images/banner-home.png
 
 # download
