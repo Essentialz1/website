@@ -1,7 +1,7 @@
 ---
 banner:
   title: "Grimpe la Tour des Skillz, bats les Gardiens, et bientôt, défie tes potes dans l'Arène !"
-  content: "Skoolz transforme le programme du collège en jeu : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et révise sans même s'en rendre compte."
+  content: "Skoolz transforme le programme du collège en jeu : votre enfant grimpe la Tour des Skillz, affronte les Gardiens et apprend sans même s'en rendre compte."
   cta: "Télécharger gratuitement"
   reassurance:
     - "Gratuit"
